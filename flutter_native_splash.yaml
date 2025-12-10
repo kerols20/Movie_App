@@ -1,0 +1,12 @@
+flutter_native_splash:
+  image: assets/image/Group 44.png
+  color: "#000000"           # لون الخلفية
+  color_dark: "#000000"      # للـ dark mode
+  android_gravity: fill      # fill لتعبئة الشاشة كلها   /// flutter pub run flutter_native_splash:create
+  ios_content_mode: scaleToFill
+  android_12:
+    image: assets/image/Group 44.png
+    color: "#000000"
+    color_dark: "#000000"
+
+
