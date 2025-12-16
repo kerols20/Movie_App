@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/app_routs/routes_name.dart';
+import '../../auth/register/view/register_view.dart';
 import '../../presentation/bottom_navigation_bar/bottom_navigation_bar.dart';
 import '../../presentation/on_boarding/viwe/on_boarding.dart';
 abstract class AppRoutes {
@@ -9,6 +10,10 @@ abstract class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => const BottomNavigationBarScreen(),
         );
+        case RoutesName.register:
+          return MaterialPageRoute(
+            builder: (context) => const RegisterView(),
+          );
         case RoutesName.onBoardingScreen:
           return MaterialPageRoute(
             builder: (context) => const OnBoardingView(),

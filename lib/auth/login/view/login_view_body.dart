@@ -42,6 +42,7 @@ class LoginViewBody extends StatelessWidget {
                 Padding(
                   padding: REdgeInsets.symmetric(horizontal: 16),
                   child: CustomTextFormField(
+                    style: TextStyle(color: ColorsApp.primaryColor),
                     controller: cubit.emailController,
                     borderRadius: 15,
                     hintText: AppText.email.tr(),
@@ -98,19 +99,16 @@ class LoginViewBody extends StatelessWidget {
                 BlocConsumer<LoginCubit, LoginState>(
                   listener: (context, state) {
                     if (state is LoginSuccess) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(AppText.loginSuccess.tr())),
-                      );
+                      Loaders.showSuccessMessage(message: AppText.loginSuccess.tr(), context: context);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => BottomNavigationBarScreen(),
                         ),
                       );
-                    } else if (state is LoginFailure) {
-                      ScaffoldMessenger.of(
-                        context,
-                      ).showSnackBar(SnackBar(content: Text(state.message)));
+                    }
+                    else if (state is LoginFailure) {
+                      Loaders.showErrorMessage(message: state.message, context: context);
                     }
                   },
                   builder: (context, state) {
@@ -146,7 +144,9 @@ class LoginViewBody extends StatelessWidget {
                       style: TextStyle(color: ColorsApp.whiteColor),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/register');
+                      },
                       child: Text(
                         AppText.createOne.tr(),
                         style: TextStyle(color: ColorsApp.primaryColor),

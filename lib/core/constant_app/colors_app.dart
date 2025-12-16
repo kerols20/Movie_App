@@ -15,6 +15,7 @@ class ColorsApp{
   static const Color yellowColor = Color(0xFFFFEB3B);
   static const Color orangeColor = Color(0xFFFF9800);
   static const Color purpleColor = Color(0xFF9C27B0);
+  static const Color secondColor = Color(0xff282A28);
 
 }
 class CustomTeme{

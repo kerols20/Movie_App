@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/core/constant_app/colors_app.dart';
+import '../../get_details_movie/view/get_details_movies_view.dart';
 import '../view_model/get_movie_cubit.dart';
 import '../view_model/get_movie_state.dart';
 class GetMovieViewBody extends StatelessWidget {
@@ -139,7 +140,10 @@ class GetMovieViewBody extends StatelessWidget {
                       child: CarouselSlider(
                         items: movies.map((movie) {
                           return GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              final movieId = movie.id;
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => GetDetailsMoviesView(movieId: movieId!),));
+                            },
                             child: Container(
                               width: 200.w,
                               margin: EdgeInsets.symmetric(horizontal: 5.w),

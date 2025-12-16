@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:movie_app/domin/entity/list_movie_entity.dart';
 import '../../../api/client/api_result.dart';
 import '../../../core/sate_status/sate_status.dart';
-import '../../../domin/use_case/get_movie_use_case.dart';
+import '../../../domin/use_case/get_movie_use_case/get_movie_use_case.dart';
 import 'get_movie_intent.dart';
 import 'get_movie_state.dart';
 @injectable

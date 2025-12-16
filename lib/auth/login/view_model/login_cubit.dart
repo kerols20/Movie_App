@@ -23,20 +23,38 @@ class LoginCubit extends Cubit<LoginState> {
     isPasswordHidden = !isPasswordHidden;
     emit(PasswordVisibilityChanged());
   }
-  Future<UserCredential?> _signInWithEmailAndPassword(String email, String password) async {UserCredential? credential;
-  try {
-    emit(LoginLoading());
-    credential = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password);
-    emit(LoginSuccess(credential.user!.uid));
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'user-not-found') {
-      print('No user found for that email.');
-    } else if (e.code == 'wrong-password') {
-      emit(LoginFailure(e.message!));
-      print('Wrong password provided for that user.');
+  Future<UserCredential?> _signInWithEmailAndPassword(String email, String password) async {
+    UserCredential? credential;
+    try {
+      emit(LoginLoading());
+
+      credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      emit(LoginSuccess(credential.user!.uid));
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+
+      switch (e.code) {
+        case 'user-not-found':
+          errorMessage = 'No user found for that email.';
+          break;
+        case 'wrong-password':
+          errorMessage = 'Wrong password.';
+          break;
+        case 'invalid-email':
+          errorMessage = 'Invalid email format.';
+          break;
+        default:
+          errorMessage = e.message ?? 'An unknown error occurred.';
+      }
+
+      emit(LoginFailure(errorMessage));
+    } catch (e) {
+      emit(LoginFailure('Something went wrong. Please try again.'));
     }
+
+    return credential;
   }
-  return credential;
-  }
+
 }

@@ -1,5 +1,6 @@
 {
   "Hello": "Hello",
+  "alreadyHaveAnAccount": "Already Have Account ?",
   "hello_world": "Hello World",
   "connectionError": "Connection Error",
   "noResponseReceivedMessage": "No response received from the server",

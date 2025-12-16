@@ -33,4 +33,13 @@ static const String skip = "skip";
   static const String loginWithGoogle = "loginWithGoogle";
   static const String loginSuccess = "loginSuccess";
   static const String dontHaveAnAccount = "dontHaveAnAccount";
+  // register
+static const String register = "register";
+static const String name = "name";
+static const String createAccount = "createAccount";
+static const String confirmPassword = "confirmPassword";
+static const String registerSuccess = "registerSuccess";
+static const String phone = "phone";
+static const String alreadyHaveAnAccount = "alreadyHaveAnAccount";
+
 }
