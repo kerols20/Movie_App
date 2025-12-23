@@ -24,7 +24,15 @@ static const String skip = "skip";
 
   //// login
   static const String email = "email";
+  static const String pleaseEnterYourEmail = "pleaseEnterYourEmail";
+  static const String pleaseEnterValidEmail = "pleaseEnterValidEmail";
+  static const String nameMustBeEtLeastThreeCharacters = "nameMustBeEtLeastThreeCharacters";
+  static const String pleaseEnterYourName = "pleaseEnterYourName";
+  static const String successLoginWithGoogle = "successLoginWithGoogle";
+  static const String passwordsDoNotMatch = "passwordsDoNotMatch";
   static const String password = "password";
+  static const String pleaseEnterYourPassword = "pleaseEnterYourPassword";
+  static const String passwordMustBeAtLeastSixCharacters = "passwordMustBeAtLeastSixCharacters";
   static const String forgotPassword = "forgotPassword";
   static const String login = "login";
   static const String or = "or";
@@ -41,5 +49,16 @@ static const String confirmPassword = "confirmPassword";
 static const String registerSuccess = "registerSuccess";
 static const String phone = "phone";
 static const String alreadyHaveAnAccount = "alreadyHaveAnAccount";
+ // forgetPassword
+static const String resetPassword = "resetPassword";
+static const String resetPasswordSuccess = "resetPasswordSuccess";
+static const String resetPasswordFailed = "resetPasswordFailed";
+static const String resetPasswordEmail = "resetPasswordEmail";
+static const String resetPasswordEmailHint = "resetPasswordEmailHint";
+static const String resetPasswordButton = "resetPasswordButton";
+static const String someThingWentWrong = "someThingWentWrong";
+
+
+
 
 }

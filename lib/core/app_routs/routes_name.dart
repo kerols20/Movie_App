@@ -3,4 +3,7 @@ abstract class RoutesName{
   static const String bottomNavigationBar = "/bottom_navigation_bar";
   static const String register = "/register";
   static const String login = "/login";
+  static const String forgetPassword = "/forget_password";
+
+
 }

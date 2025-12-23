@@ -1,16 +1,19 @@
-sealed class LoginState {}
+import 'package:firebase_auth/firebase_auth.dart';
 
-final class LoginInitial extends LoginState {}
+import '../../../core/sate_status/sate_status.dart';
 
-final class LoginLoading extends LoginState {}
+final class LoginState {
+  final bool isButtonDisabled;
+  final StateStatus<UserCredential> loginState;
+  const LoginState({this.loginState = const StateStatus.initial(),this.isButtonDisabled = false,});
 
-final class LoginSuccess extends LoginState {
-  final String uid;
-  LoginSuccess(this.uid);
-}
-class PasswordVisibilityChanged extends LoginState {}
-
-final class LoginFailure extends LoginState {
-  final String message;
-  LoginFailure(this.message);
+  LoginState copyWith({
+    bool? isButtonDisabled,
+    StateStatus<UserCredential>? loginState,
+  }) {
+    return LoginState(
+      isButtonDisabled: isButtonDisabled ?? this.isButtonDisabled,
+      loginState: loginState ?? this.loginState,
+    );
+  }
 }

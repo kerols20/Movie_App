@@ -12,7 +12,7 @@ part of 'api_client.dart';
 
 class _ApiClient implements ApiClient {
   _ApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://yts.lt/api/v2/list_movies.json';
+    baseUrl ??= 'https://yts.lt/api/v2/';
   }
 
   final Dio _dio;
@@ -31,7 +31,7 @@ class _ApiClient implements ApiClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v2/list_movies.jsonp',
+            'list_movies.json',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -41,6 +41,33 @@ class _ApiClient implements ApiClient {
     late ListMovieResponse _value;
     try {
       _value = ListMovieResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<DetailsMovie> getDetailMovies({required int movieId}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'movie_id': movieId};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<DetailsMovie>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'movie_details.json',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late DetailsMovie _value;
+    try {
+      _value = DetailsMovie.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, _result);
       rethrow;

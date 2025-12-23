@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/auth/login/view_model/login_state.dart';
+import 'package:movie_app/core/app_routs/routes_name.dart';
 import '../../../core/constant_app/app_text.dart';
 import '../../../core/constant_app/colors_app.dart';
 import '../../../core/constant_app/icons_app.dart';
@@ -18,10 +19,8 @@ import '../../sign_up/view_model/login_with_google_intent.dart';
 import '../../sign_up/view_model/login_with_google_state.dart';
 import '../view_model/login_cubit.dart';
 import '../view_model/login_intent.dart';
-
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
-
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<LoginCubit>();
@@ -56,9 +55,11 @@ class LoginViewBody extends StatelessWidget {
                     child: BlocBuilder<LoginCubit, LoginState>(
                       builder: (context, state) {
                         return CustomTextFormField(
+                          borderRadius: 15,
+                          hintText: AppText.password.tr(),
+                          prefixIcon: const Icon(Icons.lock),
                           style: TextStyle(color: ColorsApp.primaryColor),
                           label: AppText.password.tr(),
-                          prefixIcon: const Icon(Icons.lock),
                           controller: cubit.passwordController,
                           obscureText: cubit.isPasswordHidden,
                           suffixIcon: IconButton(
@@ -81,7 +82,9 @@ class LoginViewBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, RoutesName.forgetPassword);
+                      },
                       child: Text(
                         AppText.forgotPassword.tr(),
                         style: TextStyle(
@@ -98,40 +101,43 @@ class LoginViewBody extends StatelessWidget {
                 const RSizedBox(height: 30),
                 BlocConsumer<LoginCubit, LoginState>(
                   listener: (context, state) {
-                    if (state is LoginSuccess) {
-                      Loaders.showSuccessMessage(message: AppText.loginSuccess.tr(), context: context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BottomNavigationBarScreen(),
-                        ),
-                      );
+                     if (state.loginState.isSuccess) {
+                       Navigator.pushReplacementNamed(context, RoutesName.bottomNavigationBar);
+                       Loaders.showSuccessMessage(
+                         message: AppText.loginSuccess.tr(),
+                         context: context,
+                       );
                     }
-                    else if (state is LoginFailure) {
-                      Loaders.showErrorMessage(message: state.message, context: context);
+                    else if (state.loginState.isFailure) {
+                      Loaders.showErrorMessage(
+                        message: state.loginState.error?.message ?? "",
+                        context: context,
+                      );
+                       cubit.resetLoginState();
                     }
                   },
                   builder: (context, state) {
-                    final cubit = context.read<LoginCubit>();
-
-                    if (state is LoginLoading) {
+                    if (state.loginState.isLoading) {
                       return const Center(child: CircularProgressIndicator());
                     }
                     return Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
                       child: CustomElevatedButton(
-                        backgroundColor: ColorsApp.primaryColor,
-                        onPressed: () {
-                          cubit.doIntent(
-                            LoginFirebase(
-                              cubit.emailController.text,
-                              cubit.passwordController.text,
-                            ),
-                          );
-                        },
-                        buttonTitle: AppText.login.tr(),
+                        onPressed: state.isButtonDisabled
+                            ? () {
+                          if (cubit.formKey.currentState!.validate()) {
+                            cubit.doIntent(
+                              LoginFirebase(
+                                cubit.emailController.text,
+                                cubit.passwordController.text,
+                              ),
+                            );
+                          }
+                        }
+                            : null,
+                        buttonTitle: AppText.login,
                         isStart: false,
-                      ),
+                      )
                     );
                   },
                 ),
@@ -145,7 +151,7 @@ class LoginViewBody extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/register');
+                        Navigator.pushReplacementNamed(context, RoutesName.register);
                       },
                       child: Text(
                         AppText.createOne.tr(),
@@ -167,7 +173,7 @@ class LoginViewBody extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      padding:  REdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(AppText.or.tr(),
                           style: TextStyle(color: ColorsApp.primaryColor)),
                     ),
@@ -189,6 +195,7 @@ class LoginViewBody extends StatelessWidget {
                         context,
                         MaterialPageRoute(builder: (context) => BottomNavigationBarScreen()),
                       );
+                      Loaders.showSuccessMessage(message: AppText.successLoginWithGoogle.tr(), context: context);
                     }
                     if (state.loginStatus.isFailure) {
                       Loaders.showErrorMessage(

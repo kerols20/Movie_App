@@ -1,8 +1,29 @@
 {
   "Hello": "Hello",
+  "pleaseEnterYourName": "Please Enter Your Name",
+  "pleaseEnterYourEmail": "Please Enter Your Email",
+  "pleaseEnterValidEmail": "Please Enter Valid Email",
+  "pleaseEnterYourPassword": "Please Enter Your Password",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "passwordMustBeAtLeastSixCharacters": "Password must be at least 6 characters",
+  "nameMustBeEtLeastThreeCharacters": "Name must be at least 3 characters",
+  "registerSuccess": "Register Success",
+  "successLoginWithGoogle": "Success Login With Google",
+  "register": "Register",
   "alreadyHaveAnAccount": "Already Have Account ?",
   "hello_world": "Hello World",
-  "connectionError": "Connection Error",
+  "createAccount": "Create Account",
+  "someThingWentWrong": "Something Went Wrong",
+
+  "resetPassword": "Reset Password",
+  "resetPasswordSuccess": "Password reset link has been sent to your email.",
+  "resetPasswordFailed": "Failed to send password reset email.",
+  "resetPasswordEmail": "Email Address",
+  "resetPasswordEmailHint": "Enter your registered email",
+  "resetPasswordButton": "Send Reset Link",
+
+
+"connectionError": "Connection Error",
   "noResponseReceivedMessage": "No response received from the server",
   "error": "Error",
   "unexpectedError": "Unexpected Error",
@@ -32,6 +53,10 @@
   "dontHaveAnAccount" : "Don't have an account?",
   "createOne": "Create one",
   "loginWithGoogle" : "Login with Google",
-  "or": "Or"
+  "or": "Or",
+  "name": "Name",
+
+  "confirmPassword": "Confirm Password",
+  "phone": "Phone"
 
 }

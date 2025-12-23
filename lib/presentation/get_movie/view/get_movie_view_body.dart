@@ -53,6 +53,9 @@ class GetMovieViewBody extends StatelessWidget {
                               Color(0xF2000000),
                               BlendMode.dstATop,
                             ),
+                            onError: (exception, stackTrace) {
+                              debugPrint("❌ Error loading image: $exception");
+                            },
                           ),
                         ),
                       ),

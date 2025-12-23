@@ -9,4 +9,7 @@ class IconsApp{
   static const clock = "assets/icon/clock.png";
   static const star = "assets/icon/star.png";
   static const play = "assets/icon/Group 21.png";
+  static const id = "assets/icon/🦆 icon _Identification_.png";
+
+
 }

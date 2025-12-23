@@ -1,6 +1,20 @@
 {
   "alreadyHaveAnAccount": "ليس لديك حساب ؟",
   "Hello": "مرحبا",
+  "name": "الاسم",
+  "phone": "رقم الهاتف",
+  "createAccount": "انشاء حساب ",
+  "confirmPassword": "تاكيد كلمه المرور",
+  "passwordsDoNotMatch": "كلمه السر غير مطابقه",
+  "pleaseEnterYourPassword": "برجاء ادخال كلمه السر",
+  "passwordMustBeAtLeastSixCharacters": "يجب ان لا تقل كلمه السؤ عن ست احرف",
+  "pleaseEnterYourEmail": "برجاء ادخال الاسم",
+  "pleaseEnterValidEmail": "برجاء ادخال بريد الكتروني صالح ",
+  "pleaseEnterYourName": "برجاء ادخال الاسم",
+  "nameMustBeEtLeastThreeCharacters": "يجب ان لا يكون الاسم اقل من ثلاثه احرف",
+  "successLoginWithGoogle": "نجاح تسجيل الدخول باستخدام جوجل",
+  "registerSuccess": "تم التسجيل بنجاح",
+  "register": "انشاء حساب",
   "hello_world": "مرحبا بالعالم",
   "connectionError": "خطأ في الاتصال",
   "noResponseReceivedMessage": "لم يتم استلام أي استجابة من الخادم",
@@ -24,6 +38,7 @@
   "loremIpsumDolorSit": "لوريم إيبسوم دولور سيت أميت",
   "getStarted": "ابدأ الآن",
   "back": "رجوع",
+  "someThingWentWrong": "حدث خطاء غير متوقع",
   "email": "ايميل الالكتروني",
   "password": "كلمه السر",
   "forgotPassword": "هل نسيت كلمه السر؟",
@@ -32,5 +47,12 @@
   "dontHaveAnAccount" : "ليس لديك حساب بعد؟",
   "createOne": "انشاء واحد الان",
   "loginWithGoogle" : "تسجيل الدخول مع جوجل",
-  "or": "أو"
+  "or": "أو",
+
+  "resetPassword": "إعادة تعيين كلمة المرور",
+  "resetPasswordSuccess": "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.",
+  "resetPasswordFailed": "فشل في إرسال رابط إعادة تعيين كلمة المرور.",
+  "resetPasswordEmail": "البريد الإلكتروني",
+  "resetPasswordEmailHint": "أدخل بريدك الإلكتروني المسجل",
+  "resetPasswordButton": "إرسال الرابط"
 }
